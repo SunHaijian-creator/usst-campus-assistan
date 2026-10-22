@@ -1,0 +1,11 @@
+{
+  "git": {
+    "available": false,
+    "reason": "当前目录不是有效Git仓库；仅检查交付候选文件，未初始化或修改Git"
+  },
+  "candidate_files_checked": 113,
+  "known_secret_values_checked": 3,
+  "issues": [],
+  "no_commit_or_push": true,
+  "scope": "候选文件与验收JSON；截图显示名由浏览器截图工具匿名；不是历史提交的秘密审计"
+}

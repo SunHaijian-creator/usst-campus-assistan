@@ -1,0 +1,61 @@
+{
+  "verification": "仅离线检查用户提供的文件，不代表学校官网或现行政策核验",
+  "documents": [
+    {
+      "document_key": "midterm_assessment",
+      "title": "上海理工大学研究生中期考核表",
+      "sha256": "eff949f6e047367d5b2f64efc105e7cd7221bb2175e91f3f719bf0fc762f41bc",
+      "version": "原文未注明版本",
+      "chunks": 8,
+      "usable_chunks": 8,
+      "word_pages_reliable": false
+    },
+    {
+      "document_key": "masters_financial_aid_2024",
+      "title": "上海理工大学全日制硕士研究生奖助学金管理办法",
+      "sha256": "f5d8cbc5125b25a179bafbcd50f146466ceb3a6afd31be7bf5d125f2802bba21",
+      "version": "上理工研〔2024〕1号",
+      "chunks": 17,
+      "usable_chunks": 17,
+      "word_pages_reliable": null
+    },
+    {
+      "document_key": "proposal_submission",
+      "title": "研究生学位论文开题及信息提交流程",
+      "sha256": "fb7f8bd6e515d48a7c24bfd7de11990accd778e72e9a2939c44de5be85f52456",
+      "version": "原文未注明版本",
+      "chunks": 5,
+      "usable_chunks": 4,
+      "word_pages_reliable": false
+    }
+  ],
+  "pdf_review": {
+    "physical_pages": 6,
+    "visually_checked_pages": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "table_page": 3,
+    "cross_page_clauses": {
+      "第五条": [
+        4,
+        5
+      ],
+      "第十一条": [
+        5,
+        6
+      ]
+    },
+    "second_stage_ratios_sum": "90%，按原文保留，不补齐为100%或推断余下10%的含义"
+  },
+  "not_verified": [
+    "Word 文档分页",
+    "开题流程图箭头连接关系",
+    "历史 HTTP 网址当前可用性",
+    "2024 年文件当前有效性、更新版本和官网来源",
+    "中期考核最低学分及截止日期（模板未记载）"
+  ]
+}

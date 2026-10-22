@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#b81b30">
+  <title>上理办事助手 · 校园事务，一问明白</title>
+  <link rel="icon" href="/static/assets/assistant.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/chat.css">
+  <script type="module" src="/static/chat.js"></script>
+</head>
+<body>
+  <section id="auth-view" class="auth-view" aria-label="本项目账号登录与注册">
+    <a class="skip-link" href="#username">跳转到账号输入框</a>
+    <div class="auth-brand">
+      <div class="official-lockup"><img src="/static/assets/usst-lockup.jpg" alt="上海理工大学正式校徽与中文校名横式组合" width="1240" height="846"></div>
+      <div class="auth-story"><p class="eyebrow">上理办事助手 <span>·</span> 学习项目</p><h1>校园事务，<br><em>一问明白。</em></h1><p class="story-description">从一张校园卡，到一份在读证明。<br>把材料、流程和来源，放在一起看清楚。</p><div class="story-notes"><span>材料与流程</span><span>指南有出处</span><span>对话可回看</span></div></div>
+      <p class="project-notice">个人学习项目，非学校官方服务；<br>演示指南仅供功能展示。</p>
+    </div>
+    <div class="auth-panel">
+      <form id="login-form" class="auth-card">
+        <div class="product-mark"><img src="/static/assets/assistant.svg" width="44" height="44" alt="上理办事助手图标"><span>上理办事助手<small>校园事务，一问明白</small></span></div>
+        <h2 id="auth-heading">欢迎回来</h2><p id="auth-description" class="muted">登录本项目账号，继续你的校园事务咨询。</p>
+        <div class="auth-tabs" aria-label="选择登录或注册"><button id="show-login" type="button" class="auth-tab active" aria-pressed="true">账号登录</button><button id="show-register" type="button" class="auth-tab" aria-pressed="false">注册账号</button></div>
+        <label for="username">用户名</label><input id="username" name="username" autocomplete="username" minlength="3" maxlength="32" pattern="[A-Za-z0-9_]+" placeholder="请输入项目用户名" required aria-describedby="username-help"><p id="username-help" class="field-help">3～32 位字母、数字或下划线</p>
+        <label for="password">密码</label><input id="password" name="password" type="password" autocomplete="current-password" maxlength="128" placeholder="请输入密码" required aria-describedby="password-help"><p id="password-help" class="field-help">注册密码至少 8 个字符</p>
+        <p id="auth-status" class="auth-status" role="status" aria-live="polite"></p>
+        <button id="login-submit" class="auth-submit" type="submit">登录 <span aria-hidden="true">→</span></button><button id="register" class="auth-submit" type="submit" hidden>创建项目账号 <span aria-hidden="true">→</span></button>
+        <p class="auth-account-note">◇ 本项目独立账号，不使用学校统一身份认证。<br>请勿填写学校统一认证密码。</p>
+      </form>
+      <p class="auth-footer">个人学习项目，非学校官方服务；演示指南仅供功能展示。</p>
+    </div>
+  </section>
+  <div id="app-shell" class="app-shell" hidden>
+    <a class="skip-link" href="#question">跳转到问题输入框</a>
+    <button id="drawer-backdrop" class="drawer-backdrop" aria-label="关闭会话菜单" tabindex="-1" hidden></button>
+    <aside id="sidebar" class="sidebar" aria-label="会话与账号">
+      <div class="sidebar-brand"><div class="school-seal sidebar-seal"><img src="/static/assets/usst-emblem.jpg" alt="上海理工大学正式校徽" width="1240" height="1240"></div><button id="sidebar-close" class="icon-button drawer-close" aria-label="关闭会话菜单" type="button">×</button><strong>上理办事助手</strong><p>校园事务，一问明白</p></div>
+      <button id="new-conversation" class="new-conversation" disabled><span aria-hidden="true">＋</span> 新建会话</button>
+      <div class="history-heading"><h2>历史会话</h2><span>仅自己可见</span></div>
+      <div class="history-scroll"><p id="conversations-empty" class="sidebar-empty">还没有会话<br><span>从一个校园问题开始吧</span></p><nav id="conversations" aria-label="选择历史会话"></nav><button id="more-conversations" class="text-button more-conversations" hidden>加载更多会话</button></div>
+      <section id="account" class="account" hidden><span class="account-avatar" aria-hidden="true">我</span><div><p id="identity"></p><span>本项目账号</span></div><button id="logout" class="text-button" title="退出当前项目账号">退出</button></section>
+      <p class="sidebar-disclaimer">个人学习项目，非学校官方服务；<br>演示指南仅供功能展示。</p>
+    </aside>
+    <main id="workspace" class="workspace">
+      <header class="chat-header">
+        <div class="header-title"><button id="sidebar-open" class="icon-button drawer-toggle" aria-label="打开历史会话菜单" aria-controls="sidebar" aria-expanded="false" type="button">☰</button><div><p>校园事务咨询</p><h1 id="title">开始新的咨询</h1></div></div>
+        <div class="header-actions"><details class="runtime"><summary title="查看实际运行模式"><span class="mode-dot" aria-hidden="true"></span><span id="mode">读取模型配置…</span><span aria-hidden="true">⌄</span></summary><p id="mode-description">正在读取服务端配置。</p></details><button id="refresh" class="text-button" disabled>刷新历史</button><button id="delete-conversation" class="text-button danger" disabled>删除会话</button></div>
+      </header>
+      <div class="chat-stage">
+        <section id="messages" class="messages" aria-label="会话历史" tabindex="0">
+          <div id="welcome" class="welcome"><div class="school-seal welcome-seal"><img src="/static/assets/usst-emblem.jpg" alt="上海理工大学正式校徽" width="1240" height="1240"></div><p class="eyebrow">你好，欢迎来到上理办事助手</p><h2>校园事务，一问明白</h2><p class="welcome-description">想办什么事，从这里开始。<br>一起查材料、理流程，也看看答案从哪里来。</p>
+            <div class="quick-questions" aria-label="常见问题快捷填入"><button class="quick-question" type="button" data-question="校园卡补办需要什么材料？"><span class="quick-icon" aria-hidden="true">▤</span><strong>校园卡补办</strong><span>需要准备哪些材料？</span><span class="quick-arrow" aria-hidden="true">↗</span></button><button class="quick-question" type="button" data-question="在读证明应该如何办理？"><span class="quick-icon" aria-hidden="true">▧</span><strong>在读证明</strong><span>办理流程是怎样的？</span><span class="quick-arrow" aria-hidden="true">↗</span></button><button class="quick-question" type="button" data-question="教室借用应该向哪个部门申请？"><span class="quick-icon" aria-hidden="true">▦</span><strong>教室借用</strong><span>向哪个部门申请？</span><span class="quick-arrow" aria-hidden="true">↗</span></button></div>
+            <p class="welcome-notice">ⓘ 以上均为演示指南，不能替代学校正式办事要求。</p>
+            <section class="reference-welcome" aria-label="用户提供的参考文档"><p>用户提供资料 · 当前适用性未核验</p><div class="document-questions"><button type="button" data-question="学业奖学金的金额和比例是什么？">2024 奖助学金</button><button type="button" data-question="中期考核小组成员有什么职称要求？">中期考核表</button><button type="button" data-question="学院审核通过后还能修改开题信息吗？">开题信息修改</button></div></section>
+          </div>
+          <div class="timeline"><button id="older" class="text-button older" hidden>查看更早的消息</button><div id="message-list"></div></div>
+        </section>
+        <button id="jump-bottom" class="jump-bottom" type="button" hidden>↓ 回到最新消息</button>
+      </div>
+      <div class="composer-area">
+        <p id="status" class="chat-status" role="status" aria-live="polite">正在读取服务端运行模式…</p>
+        <form id="send-form" class="composer"><label class="sr-only" for="question">你的问题</label><textarea id="question" maxlength="4000" rows="2" placeholder="说说你想办什么事，例如：校园卡补办需要什么材料？" required></textarea><div class="composer-toolbar"><div class="composer-hints"><span id="character-count">0 / 4000</span><span class="keyboard-hint">Enter 发送 · Shift + Enter 换行</span><label id="scenario-label" class="scenario-label" hidden><span>模拟场景</span><select id="scenario" aria-label="选择模拟场景"><option value="normal">正常回复</option><option value="failure">模拟失败</option><option value="timeout">模拟超时</option></select></label></div><div class="composer-buttons"><button id="stop" type="button" class="stop-button" disabled><span aria-hidden="true">■</span> 停止生成</button><button id="send" type="submit" disabled>发送 <span aria-hidden="true">↑</span></button></div></div></form>
+        <p class="composer-disclaimer">个人学习项目，非学校官方服务；演示指南仅供功能展示。</p>
+      </div>
+    </main>
+  </div>
+  <dialog id="guide-dialog" class="guide-dialog" aria-labelledby="guide-dialog-title"><div class="dialog-header"><div><p class="eyebrow">参考指南</p><h2 id="guide-dialog-title">指南详情</h2></div><button id="guide-close" class="icon-button" type="button" aria-label="关闭指南详情">×</button></div><div id="guide-content" class="guide-content" aria-live="polite"></div></dialog>
+  <noscript><p class="noscript">请启用 JavaScript 后使用登录、聊天与流式回复。</p></noscript>
+</body>
+</html>

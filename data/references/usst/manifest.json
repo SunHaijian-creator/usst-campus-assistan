@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {
+      "id": "midterm_assessment",
+      "title": "上海理工大学研究生中期考核表",
+      "source_filename": "8df81ebb-8c85-48dc-aa01-15d84e234300.doc",
+      "original_path": "originals/8df81ebb-8c85-48dc-aa01-15d84e234300.doc",
+      "text_path": "text/midterm_assessment.md",
+      "sha256": "eff949f6e047367d5b2f64efc105e7cd7221bb2175e91f3f719bf0fc762f41bc",
+      "provenance": "用户提供的本地文档",
+      "currency_verified": false,
+      "demo": false,
+      "warnings": [
+        "此文件是表格模板，不是完整的中期考核管理办法。",
+        "表格单元格以竖线表示；未验证原文件页码，引用使用栏目名或注释编号。"
+      ]
+    },
+    {
+      "id": "masters_financial_aid_2024",
+      "title": "上海理工大学全日制硕士研究生奖助学金管理办法",
+      "source_filename": "a53c7aac-d4fb-4673-a1d9-c6decb8daec3.pdf",
+      "original_path": "originals/a53c7aac-d4fb-4673-a1d9-c6decb8daec3.pdf",
+      "text_path": "text/masters_financial_aid_2024.md",
+      "sha256": "f5d8cbc5125b25a179bafbcd50f146466ceb3a6afd31be7bf5d125f2802bba21",
+      "provenance": "用户提供的本地文档",
+      "currency_verified": false,
+      "demo": false,
+      "warnings": [],
+      "page_count": 6,
+      "document_number": "上理工研〔2024〕1号",
+      "issue_date": "2024-06-27",
+      "effective_date": "2024-09-01",
+      "verified_table_pages": [
+        3
+      ]
+    },
+    {
+      "id": "proposal_submission",
+      "title": "研究生学位论文开题及信息提交流程",
+      "source_filename": "af4ed269-e46a-42b5-b341-5cf4a4de1ee5.doc",
+      "original_path": "originals/af4ed269-e46a-42b5-b341-5cf4a4de1ee5.doc",
+      "text_path": "text/proposal_submission.md",
+      "sha256": "fb7f8bd6e515d48a7c24bfd7de11990accd778e72e9a2939c44de5be85f52456",
+      "provenance": "用户提供的本地文档",
+      "currency_verified": false,
+      "demo": false,
+      "warnings": [
+        "含原生流程图；文本框标签已提取，但箭头连接与步骤顺序未视觉核验。",
+        "正文含历史 HTTP 网址；未核验当前可达性。",
+        "正文原文有“把改研究生”等文字，不在提取稿中擅自修正。"
+      ]
+    }
+  ]
+}

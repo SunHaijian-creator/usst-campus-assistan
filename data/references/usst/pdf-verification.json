@@ -1,0 +1,44 @@
+{
+  "file_sha256": "f5d8cbc5125b25a179bafbcd50f146466ceb3a6afd31be7bf5d125f2802bba21",
+  "tool": "PyMuPDF 1.27.2（临时工具，非运行依赖）",
+  "physical_pages": 6,
+  "table_physical_page": 3,
+  "original_table_rows": [
+    [
+      "第一阶段",
+      "一等",
+      "20%",
+      "5000"
+    ],
+    [
+      "第一阶段",
+      "二等",
+      "80%",
+      "3000"
+    ],
+    [
+      "第二阶段",
+      "一等",
+      "5%",
+      "12000"
+    ],
+    [
+      "第二阶段",
+      "二等",
+      "35%",
+      "8000"
+    ],
+    [
+      "第二阶段",
+      "三等",
+      "50%",
+      "4000"
+    ]
+  ],
+  "table_relationships_match": true,
+  "cross_page_verbatim_checks": {
+    "article-5": true,
+    "article-11": true
+  },
+  "model_calls": 0
+}

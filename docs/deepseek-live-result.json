@@ -1,0 +1,102 @@
+{
+  "started_at": "2026-10-20T13:54:53.694688+00:00",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "max_tokens_per_request": 256,
+  "max_requests": 3,
+  "requests_started": 3,
+  "automatic_retries": 0,
+  "results": [
+    {
+      "number": 1,
+      "purpose": "连接",
+      "question": "请只回复：连接成功",
+      "http_status": 200,
+      "first_delta_seconds": 1.033,
+      "elapsed_seconds": 1.14,
+      "mode": "deepseek",
+      "model": "deepseek-flash",
+      "context_rounds": 0,
+      "references": [],
+      "retrieval_source": "no_match",
+      "delta_events": 2,
+      "answer": "连接成功",
+      "checks": {
+        "normal_end": true,
+        "real_provider": true,
+        "history_saved": true,
+        "context_rounds": true,
+        "connection_reply": true
+      },
+      "status": "passed"
+    },
+    {
+      "number": 2,
+      "purpose": "指南回答",
+      "question": "校园卡补办需要什么材料？请用两句话回答。",
+      "http_status": 200,
+      "first_delta_seconds": 0.75,
+      "elapsed_seconds": 0.929,
+      "mode": "deepseek",
+      "model": "deepseek-flash",
+      "context_rounds": 1,
+      "references": [
+        {
+          "id": 1,
+          "title": "校园卡补办",
+          "source": "演示数据（虚构）：用于校园办事助手功能测试，办理部门、流程及材料不代表任何学校的实际规定，请以所在学校官方通知为准。",
+          "is_demo": true
+        }
+      ],
+      "retrieval_source": "current_question",
+      "delta_events": 43,
+      "answer": "根据“校园卡补办”指南（演示数据（虚构），不代表真实校园政策），需要有效身份证件，以及学生证或学号信息。具体材料要求请以所在学校官方通知为准。",
+      "checks": {
+        "normal_end": true,
+        "real_provider": true,
+        "history_saved": true,
+        "context_rounds": true,
+        "demo_label": true,
+        "reference_guide": true,
+        "materials_grounded": true
+      },
+      "status": "passed"
+    },
+    {
+      "number": 3,
+      "purpose": "多轮追问",
+      "question": "办理流程呢？",
+      "http_status": 200,
+      "first_delta_seconds": 0.485,
+      "elapsed_seconds": 0.79,
+      "mode": "deepseek",
+      "model": "deepseek-flash",
+      "context_rounds": 2,
+      "references": [
+        {
+          "id": 1,
+          "title": "校园卡补办",
+          "source": "演示数据（虚构）：用于校园办事助手功能测试，办理部门、流程及材料不代表任何学校的实际规定，请以所在学校官方通知为准。",
+          "is_demo": true
+        }
+      ],
+      "retrieval_source": "last_completed_question",
+      "delta_events": 65,
+      "answer": "根据“校园卡补办”指南（演示数据（虚构），不代表真实校园政策），流程是：先通过校内服务平台挂失原校园卡，再携带材料到校园卡服务中心申请补办。随后核对身份、领取新卡并确认账户状态，具体流程请以所在学校官方通知为准。",
+      "checks": {
+        "normal_end": true,
+        "real_provider": true,
+        "history_saved": true,
+        "context_rounds": true,
+        "demo_label": true,
+        "reference_guide": true,
+        "followup_retrieval": true,
+        "steps_grounded": true
+      },
+      "status": "passed"
+    }
+  ],
+  "isolated_data_cleaned": true,
+  "test_database_removed": true,
+  "finished_at": "2026-10-20T13:55:01.324456+00:00"
+}

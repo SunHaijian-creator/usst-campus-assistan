@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.doc binary
+data/references/usst/text/* -whitespace
