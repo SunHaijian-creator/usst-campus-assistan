@@ -146,18 +146,16 @@ python -m pytest -q tests
 | 真实DeepSeek | 3次请求：连接、演示指南流式回答、多轮追问，记录见[真实调用账本](docs/deepseek-live-result.json) |
 | 尚未真实验收 | 新回答策略的语义质量、新文档引用、真实上游停止，不能用离线mock结果代替 |
 
-原验收不等于本次发布重跑结果；本次静态检查和发布记录见[发布说明](docs/publication.md)。仓库配置[CI](.github/workflows/ci.yml)在独立服务中重新验证测试，是否通过以GitHub实际运行结果为准。
+GitHub Actions已在独立PostgreSQL和Redis环境中完成217项测试：[查看运行结果](https://github.com/SunHaijian-creator/usst-campus-assistan/actions/runs/39807421792)。自动测试使用模拟上游，不产生模型API费用。
 
-## 面试展示
+## 技术文档
 
-- [3—5分钟演示步骤](docs/demo.md)
-- [技术取舍与面试讲解](docs/interview.md)
-- [简历项目介绍](docs/resume.md)
+- [回答策略](docs/answer-policy.md)
+- [SSE与会话](docs/chat.md)
+- [前端实现](docs/frontend.md)
+- [资料接入](docs/references.md)
+- [模型接入](docs/deepseek.md)
 - [已知限制](docs/limitations.md)
-- [回答策略](docs/answer-policy.md) · [SSE与会话](docs/chat.md) · [前端实现](docs/frontend.md)
-- [原开发阶段说明（历史记录）](docs/development-notes.md) · [原交付报告](docs/final-report.md)
-
-项目由作者在AI辅助下进行学习与实现，面试展示以能够解释、复现的代码和证据为准。没有宣称生产上线、用户规模、QPS或准确率指标。
 
 ## 素材与使用说明
 
