@@ -4,7 +4,7 @@
 
 **Python / FastAPI · PostgreSQL · Redis · DeepSeek · SSE · Docker Compose**
 
-> 个人学习项目，非上海理工大学官方服务。内置8条办事指南为虚构演示数据；提供的2024年文件未核验当前适用性。项目账号不接入学校统一身份认证，请勿输入学校账号密码。
+> 个人学习项目，非上海理工大学官方服务。内置8条办事指南为虚构演示数据；提供的参考文件未核验当前适用性。项目账号不接入学校统一身份认证，请勿输入学校账号密码。
 
 ## 项目预览
 
@@ -19,7 +19,7 @@
 
 <img src="docs/screenshots/usst-chat-mobile.png" alt="手机端聊天" width="280"> <img src="docs/screenshots/usst-drawer-mobile.png" alt="手机端历史抽屉" width="280">
 
-截图使用明确标注的 mock 模式与匿名显示名，用于展示产品交互，不作为真实模型回答质量证据。
+截图展示mock模式下的产品交互，账号显示名已匿名。
 </details>
 
 ## 能做什么
@@ -112,7 +112,7 @@ flowchart LR
 
 | 资料 | 使用方式 |
 | --- | --- |
-| 全日制硕士研究生奖助学金管理办法（2024） | 保留适用对象、例外、跨页条款和表格对应关系，强制提示当前适用性未核验 |
+| 全日制硕士研究生奖助学金管理办法 | 保留适用对象、例外、跨页条款和表格对应关系，强制提示当前适用性未核验 |
 | 研究生中期考核表 | 依据栏目与注释回答，空白字段不能推断最低学分或截止日期 |
 | 学位论文开题及信息提交流程 | 仅检索4条正文注释，未核对箭头的流程图片段禁止用于生成步骤 |
 
@@ -136,17 +136,9 @@ python -m pytest -q tests
 
 本地热重载：停止Compose中的app后执行`python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload`。已有app占用8000端口时不要同时启动另一个后端。
 
-### 验证记录
+### 测试覆盖
 
-| 范围 | 已有验收证据 |
-| --- | --- |
-| 离线/集成回归 | 原开发环境记录217项通过；包括认证隔离、事务、缓存、SSE、引用、初始化与就绪检查 |
-| 浏览器交互 | 原验收覆盖桌面1440×960及手机390×844；截图位于docs/screenshots |
-| Compose | 原部署记录app健康、单次迁移成功、同镜像隔离测试及重启历史保留 |
-| 真实DeepSeek | 3次请求：连接、演示指南流式回答、多轮追问，记录见[真实调用账本](docs/deepseek-live-result.json) |
-| 尚未真实验收 | 新回答策略的语义质量、新文档引用、真实上游停止，不能用离线mock结果代替 |
-
-GitHub Actions已在独立PostgreSQL和Redis环境中完成217项测试：[查看运行结果](https://github.com/SunHaijian-creator/usst-campus-assistan/actions/runs/39807421792)。自动测试使用模拟上游，不产生模型API费用。
+测试覆盖认证与用户隔离、事务一致性、缓存回退、SSE事件、引用定位及初始化流程。GitHub Actions在独立PostgreSQL和Redis环境中运行测试：[查看测试状态](https://github.com/SunHaijian-creator/usst-campus-assistan/actions)。自动测试使用受控上游响应，不产生模型API费用。
 
 ## 技术文档
 

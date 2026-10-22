@@ -37,3 +37,7 @@ docs/final-report.md
 docs/publication.md
 docs/delivery-audit.json
 docs/local-deployment-result.json
+
+# 本地检查记录
+docs/*-result.json
+docs/*-acceptance.json
