@@ -26,7 +26,7 @@ from app.generation import ensure_idle
 from app.model_gateway import ModelFailure, ModelInput, ModelProvider, get_model_provider
 from app.models import Conversation, Message
 from app.retrieval import is_short_followup, retrieve_guides
-from app.reference_search import domain_for, is_document_followup, search_documents
+from app.reference_search import PROPOSAL, domain_for, is_document_followup, search_documents
 from app.reference_citations import validate_citations
 from app.reference_loader import AID_WARNING
 from app.schemas import ChatRequest, GuideReference
@@ -57,10 +57,14 @@ def prepare_turn(session, conversation_id, user_id, data, provider=None):
     documents = search_documents(session, data.content)
     guides = [] if documents.domain else retrieve_guides(session, data.content)
     source = "current_question"
+    previous = context[-1]["user"] if context else ""
+    previous_domain = domain_for(previous)
     if not documents.domain and not guides and context and (is_short_followup(data.content) or
-            (domain_for(context[-1]["user"]) and is_document_followup(data.content))):
-        previous = context[-1]["user"]
-        if domain_for(previous):
+            (previous_domain and is_document_followup(data.content, previous_domain))):
+        if previous_domain == PROPOSAL:
+            # 仅继承主题；旧问题中的“截止”等条件不能覆盖当前追问的操作意图。
+            documents = search_documents(session, data.content, context_domain=previous_domain)
+        elif previous_domain:
             documents = search_documents(session, previous + " " + data.content)
         else:
             guides = retrieve_guides(session, previous)

@@ -156,6 +156,41 @@ async def test_doc_chat_references_history_and_priority_over_demo(api, chat_acco
     assert demo[0][1]["references"] and all(ref["is_demo"] for ref in demo[0][1]["references"])
 
 
+@pytest.mark.parametrize("question", ["计算机读研该怎么选择研究方向？", "论文方向怎么选？"])
+async def test_direction_planning_does_not_retrieve_midterm_rules(api, chat_account, question):
+    events = await send(api, chat_account, question)
+    assert events[-1][0] == "done"
+    assert events[0][1]["references"] == events[-1][1]["references"] == []
+
+
+async def test_proposal_followup_inherits_topic_without_previous_deadline(api, chat_account):
+    calls = []
+    class Provider:
+        mode = "mock"
+        model_name = "followup-check"
+        async def stream(self, data):
+            calls.append(data)
+            yield "当前问题与已检索资料已接收。"
+    app.dependency_overrides[get_model_provider] = Provider
+    try:
+        first = await send(api, chat_account, "今年开题最晚哪天交？")
+        assert first[-1][0] == "done" and calls[-1].insufficient_reason
+        followup = await send(api, chat_account, "审核通过后发现填错了，该怎么办？")
+        assert followup[-1][0] == "done" and len(calls) == 2
+        assert followup[0][1]["retrieval_source"] == "last_completed_question"
+        assert calls[-1].insufficient_reason is None
+        assert len(calls[-1].documents) == 2
+        assert all("注释" in ref.locator for ref in calls[-1].documents)
+        assert "置未审核" in calls[-1].documents[1].excerpt
+        # 没有开题上下文时，普通审核问题不能凭空套用学校规定。
+        general = await send(api, chat_account, "学习计划应该怎么安排？")
+        assert general[-1][0] == "done"
+        unrelated = await send(api, chat_account, "审核通过后发现填错了，该怎么办？")
+        assert unrelated[-1][0] == "done" and calls[-1].documents == []
+    finally:
+        app.dependency_overrides.pop(get_model_provider, None)
+
+
 async def test_model_receives_only_actual_data_and_doc_instructions_are_not_system():
     with SessionLocal() as session:
         refs = search_documents(session, "审核后修改开题信息").references

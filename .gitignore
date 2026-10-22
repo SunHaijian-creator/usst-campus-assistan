@@ -28,7 +28,7 @@ node_modules/
 playwright-report/
 test-results/
 
-# 仅供个人使用的面试资料和内部验收记录
+# 本地个人资料与检查记录
 docs/demo.md
 docs/interview.md
 docs/resume.md

@@ -20,7 +20,11 @@ def compact(text):
 
 
 def domain_for(question):
-    if any(word in question for word in ("中期", "考核表", "最低学分", "研究方向", "论文方向", "论文内容修改")):
+    direction_change = (
+        any(word in question for word in ("研究方向", "论文方向", "论文内容"))
+        and any(word in question for word in ("修改", "变更", "调整", "重新开题"))
+    )
+    if direction_change or any(word in question for word in ("中期", "考核表", "最低学分")):
         return MIDTERM
     if any(word in question for word in ("奖学金", "助学金", "奖助", "三助", "助研", "助教", "助管")):
         return AID
@@ -29,8 +33,13 @@ def domain_for(question):
     return None
 
 
-def is_document_followup(question):
-    return re.fullmatch(r"(?:那|那么|这个|还)?(?:金额|比例|资助比例|适用对象|例外|发放时间|申请条件|生效时间)(?:是多少|是什么|有哪些|呢)?[？?。]*", compact(question)) is not None
+def is_document_followup(question, previous_domain=None):
+    if re.fullmatch(r"(?:那|那么|这个|还)?(?:金额|比例|资助比例|适用对象|例外|发放时间|申请条件|生效时间)(?:是多少|是什么|有哪些|呢)?[？?。]*", compact(question)):
+        return True
+    # 省略“开题”的操作追问仅承接开题主题，不能将普通审核问题直接归入校内流程。
+    return previous_domain == PROPOSAL and any(
+        word in question for word in ("审核通过", "审核后", "未审核", "填错", "修改信息", "怎么修改")
+    )
 
 
 def lexical_score(question, text):
@@ -55,8 +64,8 @@ def citation(chunk, document, number):
         original_url=f"/references/documents/{document.id}/original")
 
 
-def search_documents(session, question):
-    domain = domain_for(question)
+def search_documents(session, question, *, context_domain=None):
+    domain = domain_for(question) or context_domain
     result = DocumentSearch(domain=domain)
     if domain is None:
         return result

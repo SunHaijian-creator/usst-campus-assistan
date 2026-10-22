@@ -36,4 +36,20 @@
 - [手机聊天](screenshots/usst-chat-mobile.png)
 - [手机抽屉](screenshots/usst-drawer-mobile.png)
 
+## 浏览器检查
+
+在README的本地开发环境中安装依赖、启动PostgreSQL和Redis后执行：
+
+```bash
+source .venv/bin/activate
+python -m playwright install --with-deps chromium
+python -m scripts.verify_frontend
+python -m scripts.verify_references
+python -m scripts.verify_deepseek_http --browser
+```
+
+浏览器及Linux系统依赖需要额外下载，安装系统依赖时可能要求管理员密码。安装方式见[Playwright浏览器说明](https://playwright.dev/python/docs/browsers)。脚本创建隔离数据库与临时应用进程，使用mock或本地模拟上游，不调用真实模型；生成的截图会写入 `docs/screenshots/`。
+
+这些检查分别覆盖界面交互、文档来源与原件入口、模型协议及流式异常，不代表真实模型回答质量已经通过验证。
+
 运行步骤见[README](../README.md)。
