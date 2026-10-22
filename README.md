@@ -1,1 +1,1 @@
-# -usst-campus-assistan
+# usst-campus-assistan
